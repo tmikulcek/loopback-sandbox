@@ -1,0 +1,17 @@
+{
+  "name": "SimpleModel",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
