@@ -15,7 +15,10 @@ before(function (done) {
 describe('undefined in where', function() {
 
   before(function (done) {
-    app.models.SimpleModel.create([{name: 'first'}, {name: 'second'}, {name: 'third'}], function() { done(); });
+    app.models.SimpleModel.create([{name: 'first'}, {name: 'second'}, {name: 'third'}], function(err, models) {
+      console.log('created models:', models);
+      done();
+    });
   });
 
   it('should throw in find', function (done) {
@@ -27,8 +30,11 @@ describe('undefined in where', function() {
 
   it('should throw in destroy all', function (done) {
     app.models.SimpleModel.destroyAll({name: undefined}, function (err) {
-      expect(err).to.exist;
-      done();
+      app.models.SimpleModel.find({}, function (err, models) {
+        console.log('found models:', models);
+        expect(err).to.exist;
+        done();
+      });
     });
   });
 });
